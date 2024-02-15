@@ -1,0 +1,139 @@
+<!-- <section class="container">
+  <section class="head">
+    <p class="text-login">Log In</p>
+  </section>
+  <section class="body">
+    <p class="text-head-body">Log in to your MG Waste Account</p>
+    <section class="cols">
+      <section class="col1">
+        <div class="main-container email">
+          <input placeholder="Lorem@gmail.com" type="text" id="email" />
+          <label for="email">Email</label>
+        </div>
+        <div class="main-container email">
+          <input placeholder="xxxxxxxxxxx" type="text" id="password" />
+          <label for="password">Password</label>
+        </div>
+        <a href="#" class="forgot">Forgot email or password?</a>
+        <button class="button-global" mat-raised-button>Log In</button>
+        <p class="text-register">
+          Already have an account or need to register?
+        </p>
+        <a href="#" class="forgot createAccount"
+          >Create a my MG Waste Account</a
+        >
+      </section>
+      <section class="col2">
+        <p class="text">Log in to your MG Waste account to:</p>
+        <ul>
+          <li>
+            <a href="#">Make a payment online</a>
+          </li>
+          <li>
+            <a href="#">View trash and recycling pickup times</a>
+          </li>
+          <li>
+            <a href="#">Add or update a billing method</a>
+          </li>
+          <li>
+            <a href="#">Enroll in e-billing</a>
+          </li>
+          <li>
+            <a href="#">Customize alerts and notifications</a>
+          </li>
+        </ul>
+      </section>
+    </section>
+  </section>
+</section> -->
+<section class="container">
+  <section class="head head2">
+    <p class="text-login">Getting Started</p>
+  </section>
+  <section class="body">
+    <section class="cols">
+      <section class="col1 profile-icon-container">
+        <div class="logInIcon">
+          <mat-icon>account_circle</mat-icon>
+          <p>Log In</p>
+        </div>
+        <div class="main-container email">
+          <input placeholder="Lorem@gmail.com" type="text" id="email" />
+          <label for="email">Email</label>
+        </div>
+        <div class="main-container email">
+          <input placeholder="xxxxxxxxxxx" type="text" id="password" />
+          <label for="password">Password</label>
+        </div>
+        <a href="#" class="forgot">Forgot email or password?</a>
+        <button class="button-global" mat-raised-button>Log In</button>
+        <p class="text-register">
+          Already have an account or need to register?
+        </p>
+        <a (click)="navigateTo('/register')" class="forgot createAccount"
+          >Create a my MG Waste Account</a
+        >
+      </section>
+      <section class="col2 continue-as-guest">
+        <div class="icon-text-holder">
+          <mat-icon>person</mat-icon>
+          <p class="text">Continue As Guest</p>
+        </div>
+        <div class="customer-invoice">
+          <p>Please use your</p>
+          <div
+            class="main-selector"
+            #dropdownContainer2
+            (click)="toggleDropdown(2)"
+            style="margin-left: 25px"
+          >
+            <input
+              #selectorInput2
+              placeholder="Select"
+              type="text"
+              value="Invoice Number"
+              id="selectorx2"
+              readonly
+            />
+            <mat-icon
+              class="arrow"
+              [ngClass]="{ 'arrow-up': isDropdownOpen === 2 }"
+              matSuffix
+            >
+              arrow_drop_down
+            </mat-icon>
+            <div *ngIf="isDropdownOpen === 2" class="dropdown-content">
+              <!-- Dropdown options -->
+            </div>
+          </div>
+          <br />
+        </div>
+        <p class="description-select">
+          to view your holiday schedule or pay your bill
+        </p>
+        <div class="form-container">
+          <div class="main-container" style="margin-right: 25px">
+            <input
+              placeholder="3950 Nw 3rd St, Miami, Fl, 33126"
+              type="text"
+              id="address"
+            />
+            <label for="address">Address</label>
+          </div>
+          <button class="button-global" type="submit" mat-raised-button>
+            Submit
+          </button>
+        </div>
+        <p class="privacy-policy">
+          Learn more about your rights on our
+          <a href="#">Privacy Policy</a> page.
+        </p>
+        <img
+          class="invoice-image"
+          src="../../../../../assets/images/invoice.png"
+          alt="Invoice-number-guide-jpg"
+        />
+      </section>
+    </section>
+  </section>
+</section>

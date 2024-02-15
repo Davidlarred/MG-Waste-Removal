@@ -1,0 +1,207 @@
+@import "../../../../../assets/shared/variables";
+.container {
+  position: relative;
+  max-width: 100%;
+  background-color: #f8f8f2;
+  .head {
+    padding: 0 calc((100% - 1140px) / 2) !important;
+    position: relative;
+    height: 12.5rem;
+    display: flex;
+    font-family: "Maax-Black", Arial, sans-serif !important;
+    justify-content: flex-start;
+    align-items: center;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      background-image: url("../../../../../assets/images/WhatsApp\ Image\ 2023-09-09\ at\ 2.13.10\ PM.jpeg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      left: 0;
+      top: 0;
+      height: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      height: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+    .text-login {
+      position: absolute;
+      letter-spacing: -0.5px;
+      z-index: 2;
+      font-size: 3.5rem;
+      color: black;
+      font-weight: 800;
+    }
+  }
+  .head2 {
+    margin-bottom: 1.5rem;
+  }
+  .body {
+    position: relative;
+    margin: 0 calc((100% - 1140px) / 2) !important;
+    .text-head-body {
+      position: relative;
+      font-size: 1rem;
+      margin: 1.5rem 0 1.5rem 0 !important;
+      color: $plain-color;
+      font-weight: bold;
+    }
+    .cols {
+      position: relative;
+      display: flex;
+      width: 100%;
+      padding-bottom: 1.5rem !important;
+      height: 100%;
+      align-items: flex-start;
+      .col1 {
+        position: relative;
+        background-color: white;
+        padding: 3rem 1.5rem;
+        display: flex;
+        width: 29%;
+        height: 30rem;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: flex-start;
+        .email {
+          margin-bottom: 1.5rem;
+          width: 100%;
+          input {
+            width: 100%;
+          }
+        }
+        .forgot {
+          font-size: 0.95rem;
+          text-decoration: none;
+          color: $primary-color;
+          font-weight: bold;
+        }
+        .button-global {
+          margin: 1rem 0;
+          width: 100%;
+        }
+        .createAccount {
+          margin-top: 0.5rem !important;
+          cursor: pointer;
+        }
+      }
+      .profile-icon-container {
+        padding: 1.5rem 1.5rem;
+        .logInIcon {
+          position: relative;
+          display: flex;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          mat-icon {
+            height: 1.8rem;
+            font-size: 1.8rem;
+            width: 1.8rem;
+            margin-right: 1rem;
+            overflow: visible;
+            color: $primary-color;
+          }
+          p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: $plain-color;
+          }
+        }
+      }
+      .col2 {
+        position: relative;
+        margin-left: 2rem;
+        box-sizing: border-box;
+        background-color: white;
+        width: calc(71% - 2rem);
+        height: auto;
+        padding: 1.5rem;
+        .text {
+          position: relative;
+          font-size: 1.2rem;
+          color: $plain-color;
+          font-weight: bold;
+          margin-bottom: 1.2rem !important;
+        }
+        ul {
+          padding-left: 1rem;
+          li {
+            a {
+              text-decoration: none;
+              font-size: 0.95rem;
+              letter-spacing: 0.04rem;
+              color: $plain-color;
+            }
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+      .continue-as-guest {
+        .icon-text-holder {
+          display: flex;
+          align-items: center;
+          mat-icon {
+            margin: 0;
+            color: $primary-color;
+            font-size: 1.8rem;
+            width: 1.8rem;
+            height: 1.8rem;
+          }
+          p {
+            margin: 0 0 0 0.5rem !important;
+            font-size: 1rem;
+          }
+        }
+        .customer-invoice {
+          display: flex;
+          align-items: center;
+          margin-top: 2rem;
+          p {
+            font-size: 0.9rem;
+            color: $plain-color;
+          }
+        }
+        .description-select {
+          font-size: 0.9rem;
+          color: $plain-color;
+          margin-top: 1rem !important;
+        }
+        .form-container{
+          display: flex;
+          align-items: center;
+          margin-top: 2rem;
+        }
+        .privacy-policy{
+          font-size: 0.9rem;
+          color: $plain-color;
+          margin: 1rem 0!important;
+          a{
+            text-decoration: none;
+            color: $primary-color;
+          }
+        }
+        .invoice-image{
+          margin: 0;
+          padding: 0;
+          width: auto;
+          height: 8rem;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}

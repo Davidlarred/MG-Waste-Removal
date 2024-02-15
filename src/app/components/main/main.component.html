@@ -1,0 +1,56 @@
+<section class="mainbanner">
+  <section class="banner-section">
+    <img
+      src="../../assets/images/WhatsApp Image 2023-09-10 at 3.10.39 PM.jpeg"
+      alt=""
+    />
+    <p class="header">
+      Effortless Clean-up for <span class="hightlighted"> Any Project</span>
+    </p>
+    <p class="description">
+      Our Hook-Lift Dumpster Services offer a range of container sizes that fit
+      commercial, residential, and construction needs. We make it easy to get
+      the container size that's right for your project!
+    </p>
+    <button class="button" mat-raised-button>Reserve Now</button>
+  </section>
+  <article class="service-request">
+    <div class="form-container">
+      <p class="header">Request Your Waste Removal Service Today</p>
+      <div class="input-text">
+        <!-- Other input elements -->
+        <div class="main-container" style="margin-right: 25px;">
+          <input placeholder="3950 Nw 3rd St, Miami, Fl, 33126" type="text" id="address"/>
+          <label for="address">Service Address</label>
+        </div>
+        <!-- First Dropdown -->
+        <div class="main-selector" #dropdownContainer1 (click)="toggleDropdown(1)">
+          <input #selectorInput1 placeholder="Select" type="text" id="selectorx1" readonly />
+          <label for="selectorx1">For home or business?</label>
+          <mat-icon class="arrow" [ngClass]="{ 'arrow-up': isDropdownOpen === 1 }" matSuffix>
+            arrow_drop_down
+          </mat-icon>
+          <div *ngIf="isDropdownOpen === 1" class="dropdown-content">
+            <!-- Dropdown options -->
+          </div>
+        </div>
+      
+        <!-- Second Dropdown -->
+        <div class="main-selector" #dropdownContainer2 (click)="toggleDropdown(2)" style="margin-left: 25px;">
+          <input #selectorInput2 placeholder="Select" type="text" id="selectorx2" readonly />
+          <label for="selectorx2">Business Type</label>
+          <mat-icon class="arrow" [ngClass]="{ 'arrow-up': isDropdownOpen === 2 }" matSuffix>
+            arrow_drop_down
+          </mat-icon>
+          <div *ngIf="isDropdownOpen === 2" class="dropdown-content">
+            <!-- Dropdown options -->
+          </div>
+        </div>
+      
+        <button class="button" mat-raised-button>Get Started</button>
+      </div>
+    </div>
+  </article>
+</section>
+
+

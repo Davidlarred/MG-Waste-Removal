@@ -1,0 +1,131 @@
+<nav class="main-nav">
+  <mat-toolbar class="sub-menu">
+    <div class="col1">
+      <div class="selector">
+        <div class="text-icon" (click)="toggleDropdown()">
+          <div class="text-icon-centered">
+            {{ selectedLanguage }}
+            <mat-icon
+              class="arrow"
+              [ngClass]="{
+                'arrow-down': isDropdownOpen,
+                'arrow-up-lang': !isDropdownOpen
+              }"
+              matSuffix
+            >
+              arrow_drop_down
+            </mat-icon>
+          </div>
+          @if (isDropdownOpen) { @for (language of languages; track $index) {
+          <li (click)="selectLanguage(language)">
+            {{ language }}
+          </li>
+          } }
+        </div>
+      </div>
+    </div>
+    <div class="col2">
+      <a class="space text" href="#">Make a payment</a>
+      <div class="space badge-icon">
+        <mat-icon aria-hidden="false" matBadge="1" matBadgeColor="warn"
+          >shopping_cart</mat-icon
+        >
+        <span class="cdk-visually-hidden">
+          cart icon with overlaid badge showing the number of elements added
+        </span>
+      </div>
+      <button class="space loginbtn" (click)="toggleClass()" mat-raised-button>
+        Log In
+      </button>
+      <article
+        [ngClass]="{ 'active-class': isClassActive }"
+        class="popup-logIn input-text"
+      >
+        <div class="main-container margin">
+          <input placeholder="Email" type="text" id="address" />
+          <label for="address">Email Address</label>
+        </div>
+        <div class="main-container">
+          <input placeholder="Password" type="text" id="password" />
+          <label for="password">Password</label>
+        </div>
+        <button class="button" mat-raised-button>Log In</button>
+        <a href="#" class="forgot">Forgot email or password?</a>
+        <button (click)="navigateTo('/login')" class="guest btn" mat-raised-button>Continue as Guest</button>
+        <button class="button-btn btn" mat-raised-button>
+          Create a My MG Profile
+        </button>
+      </article>
+    </div>
+  </mat-toolbar>
+</nav>
+<nav class="main-menu">
+  <mat-toolbar class="menu">
+    <div class="col1">
+      <img (click)="navigateTo('')" src="../../assets/images/Untitled design (18).svg" alt="MG-Waste-Removal.ico" />
+    </div>
+    <div class="col2">
+      @for (item of navigationItems; track $index){
+      <a
+        href="#"
+        [ngClass]="{ active: activeItem === item }"
+        (mouseenter)="setActiveContent(item.title)"
+        (mouseleave)="checkMouseLeave($event)"
+        >{{ item.title }}</a
+      >
+      }
+    </div>
+  </mat-toolbar>
+</nav>
+@if(activeOptions.length){
+<section
+  class="content-display"
+  [class.active-section]="activeOptions.length > 0"
+  (mouseleave)="checkMouseLeave($event)"
+  [@fadeInOut]="activeOptions.length > 0"
+>
+  <div class="col-container">
+    <div class="col1">
+      <article class="card">
+        <div class="description">
+          <span></span>
+          @for (option of activeOptions; track $index){
+          <p class="heading">{{ option.header }}</p>
+          <p (mouseenter)="setActiveDumpster(option)" class="title">
+            {{ option.name }}
+          </p>
+          }
+        </div>
+      </article>
+    </div>
+    @if (menu) { @if (activeSubElemnt) {
+    <div class="col2" >
+      <img [src]="activeElements?.imageUrl" alt="{{ activeElements?.name }}" />
+      <p class="title">{{ activeElements?.name }}</p>
+      <p class="description">{{ activeElements?.description }}</p>
+    </div>
+    } } @if (activeSection === 'Dumpster Sizes') {
+    <div class="col2">
+      <img src="../../assets/images/6.svg" alt="Hook-Lift Dumpster Rental" />
+      <p class="title">Hook-Lift Dumpster Rental in Miami Florida</p>
+      <p class="description">
+        Our Hook-Lift dumpsters are designed to effortlessly accommodate
+        projects ranging from small to medium sizes
+      </p>
+    </div>
+    } @if (activeSection === 'Dumpster Compactor Service') {
+    <div class="col2">
+      <img src="activeElements?.imageUrl" alt="test" />
+      <p class="title">Prueba</p>
+      <p class="description">probar aberracion</p>
+    </div>
+    } @if (activeSection === 'Areas We Serve') {
+    <div class="col2">
+      <img src="activeElements?.imageUrl" alt="prueba" />
+      <p class="title">el ultimo por dios</p>
+      <p class="description">aver si funciona</p>
+    </div>
+    }
+  </div>
+</section>
+}

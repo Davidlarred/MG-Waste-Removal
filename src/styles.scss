@@ -1,1 +1,206 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../src/assets/shared/variables";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Maax-Regular", Arial, sans-serif !important;
+  text-decoration: none;
+}
+* {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard syntax */
+}
+
+p {
+  margin: 0 !important;
+}
+.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align.ng-tns-c1798928316-0 {
+  display: none !important;
+}
+.mat-badge-medium .mat-badge-content {
+  width: 14px;
+  height: 14px;
+  line-height: 15px;
+}
+.mat-badge-medium.mat-badge-above .mat-badge-content {
+  top: -6px;
+}
+.mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+  right: -7px;
+}
+
+.active {
+  &::after {
+    height: 3px !important;
+    transition: all ease-in-out 0.06s !important;
+  }
+}
+
+.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align.ng-tns-c1798928316-1 {
+  display: none;
+}
+.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align.ng-tns-c1798928316-3 {
+  display: none;
+}
+
+.input-text {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container {
+  position: relative;
+  label {
+    position: absolute;
+    top: -11px;
+    font-size: 0.9rem;
+    left: 10px;
+    font-weight: bold;
+    color: rgba(73, 73, 73, 0.74);
+    background-color: white;
+    padding: 0 8px;
+    z-index: 1;
+    transition: all ease-in-out 0.1s;
+  }
+  input {
+    position: relative;
+    height: 46px;
+    width: 300px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border: solid rgba(128, 128, 128, 0.527) 2.5px;
+    border-radius: 4px;
+    outline: none;
+    color: $plain-color;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    transition: all ease-in-out 0.1s;
+    &:focus {
+      border-color: $secondary-color;
+      transition: all ease-in-out 0.1s;
+    }
+    &::placeholder {
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 0.05rem;
+      color: rgba(128, 128, 128, 0.486);
+    }
+  }
+  input:focus ~ label {
+    color: $secondary-color;
+    transition: all ease-in-out 0.1s;
+  }
+}
+
+.main-selector {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  label {
+    position: absolute;
+    top: -11px;
+    font-size: 0.9rem;
+    left: 10px;
+    font-weight: bold;
+    color: $plain-color;
+    background-color: white;
+    padding: 0 8px;
+    z-index: 1;
+    transition: all ease-in-out 0.1s;
+  }
+  input {
+    position: relative;
+    height: 46px;
+    width: 300px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border: solid rgba(128, 128, 128, 0.527) 2.5px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 0.9rem;
+    color: rgb(0 0 0 / 54%);
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    caret-color: transparent;
+    transition: all ease-in-out 0.1s;
+    cursor: pointer;
+    &:focus {
+      border-color: $secondary-color;
+    }
+    &::placeholder {
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 0.05rem;
+      color: rgba(128, 128, 128, 0.486);
+    }
+  }
+  mat-icon {
+    position: absolute;
+    right: 0;
+    transition: all ease-in-out 0.1s;
+  }
+  .dropdown-content {
+    position: absolute;
+  }
+  input:focus ~ label {
+    color: $secondary-color;
+    transition: all ease-in-out 0.1s;
+  }
+}
+.arrow-up-lang {
+  transform: rotate(0); /* Arrow pointing up when open */
+  transition: all ease-in-out 0.1s;
+}
+.arrow-up {
+  transform: rotate(180deg);
+  transition: all ease-in-out 0.1s;
+}
+.button-global {
+  position: relative;
+  background-color: #5ea627 !important;
+  color: rgba(255, 255, 255, 0.925) !important;
+  font-weight: 500;
+  width: auto !important;
+  border-radius: 10rem !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.11rem !important;
+}
+.outlined-button {
+  position: relative;
+  outline: solid #5ea627 2px !important;
+  color: $plain-color !important;
+  font-weight: 500;
+  border-radius: 10rem !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.11rem !important;
+}
+
+
+.error-text{
+  color: red;
+  font-size: .7rem;
+  line-height: .9rem;
+  margin-top: .5rem!important;
+}
+
+.required-red{
+  transition: all ease-in-out 0.5s;
+  input{
+    border-color: red!important;
+    transition: all ease-in-out 0.5s;
+  }
+  label{
+    color: red!important;
+    transition: all ease-in-out 0.5s;
+  }
+}

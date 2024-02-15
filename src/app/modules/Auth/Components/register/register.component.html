@@ -1,0 +1,252 @@
+<section class="container">
+  <section class="head">
+    <p class="text-login">Sign up</p>
+  </section>
+  <section class="body">
+    <p class="text-head-body">Sig up for your MG Waste account</p>
+    <section class="cols">
+      <section class="col1">
+        <form [formGroup]="form">
+          <div
+            [ngClass]="
+              form.controls['name'].errors && form.controls['name'].touched
+                ? 'required-red'
+                : ''
+            "
+            class="main-container email"
+          >
+            <input
+              formControlName="name"
+              placeholder="John"
+              type="text"
+              id="First-Name"
+            />
+            <label for="First-Name">First Name</label>
+            <p
+              [@fadeInOut]="form.get('name').errors?.['required'] && form.get('name').touched"
+              class="error-text"
+              *ngIf="form.get('name').errors?.['required'] && form.get('name').touched"
+            >
+              First name is required*
+            </p>
+            <p
+              [@fadeInOut]="form.get('name').errors?.['singleName'] && form.get('name').touched"
+              class="error-text"
+              *ngIf="form.get('name').errors?.['singleName'] && form.get('name').touched"
+            >
+              Name can only contain letters
+            </p>
+          </div>
+          <div class="main-container email"
+          [ngClass]="
+              form.controls['lastname'].errors && form.controls['lastname'].touched
+                ? 'required-red'
+                : ''
+            ">
+            <input
+              formControlName="lastname"
+              placeholder="Due"
+              type="text"
+              id="Last-Name"
+            />
+            <label for="Last-Name">Last Name</label>
+            <p
+              [@fadeInOut]="form.get('lastname').errors?.['required'] && form.get('lastname').touched"
+              class="error-text"
+              *ngIf="form.get('lastname').errors?.['required'] && form.get('lastname').touched"
+            >
+              Last name is required*
+            </p>
+            <p
+              [@fadeInOut]="form.get('lastname').errors?.['singleName'] && form.get('lastname').touched"
+              class="error-text"
+              *ngIf="form.get('lastname').errors?.['singleName'] && form.get('lastname').touched"
+            >
+              Name can only contain letters
+            </p>
+          </div>
+          <div class="main-container email"
+          [ngClass]="
+              form.controls['email'].errors &&
+              form.controls['email'].touched
+                ? 'required-red'
+                : ''
+            ">
+            <input
+              formControlName="email"
+              placeholder="Lorem@gmail.com"
+              type="text"
+              id="email"
+            />
+            <label for="email">Email</label>
+            <p
+              class="error-text"
+              *ngIf="
+              this.form.controls['email'].errors?.['required'] &&
+              this.form.controls['email'].touched
+            "
+            [@fadeInOut]="this.form.controls['email'].errors?.['required'] &&
+            this.form.controls['email'].touched"
+            >
+              Email required*
+            </p>
+            <p
+              *ngIf="
+                this.form.controls['email'].errors?.['email']  &&
+                this.form.touched
+              "
+              [@fadeInOut]="
+              this.form.controls['email'].errors?.['email']  &&
+              this.form.touched
+            "
+              class="error-text"
+            >
+              Please introduce a valid email address
+            </p>
+          </div>
+          <div
+            [ngClass]="
+              form.controls['password'].errors &&
+              form.controls['password'].touched
+                ? 'required-red'
+                : ''
+            "
+            class="main-container email"
+          >
+            <input
+              formControlName="password"
+              placeholder="xxxxxxxxxxx"
+              type="text"
+              id="password"
+            />
+            <label for="password">Password</label>
+            <p
+              [@fadeInOut]="form.get('password').errors?.['required'] && form.get('password').touched"
+              class="error-text"
+              *ngIf="form.get('password').errors?.['required'] && form.get('password').touched"
+            >
+              Password is required*
+            </p>
+            <p
+              [@fadeInOut]="
+                form.controls['password'].errors &&
+                form.controls['password'].touched
+              "
+              class="error-text"
+              *ngIf="
+                form.controls['password'].errors &&
+                form.controls['password'].touched
+              "
+            >
+              Your password must meet all the requirements*
+            </p>
+          </div>
+          <div
+            [ngClass]="
+              form.controls['passwordConfirmation'].errors &&
+              form.controls['password'].touched
+                ? 'required-red'
+                : ''
+            "
+            class="main-container email"
+          >
+            <input
+              formControlName="passwordConfirmation"
+              placeholder="xxxxxxxxxxx"
+              type="text"
+              id="passwordConfirmation"
+            />
+            <label for="passwordConfirmation">Confirm Password</label>
+            <p
+              [@fadeInOut]="
+              form.errors?.['invalidPasswordConfirmation'] === true
+              ? true
+              : false && this.form.controls['password'].touched
+          "
+              class="error-text"
+              *ngIf="
+                form.errors?.['invalidPasswordConfirmation'] === true
+                ? true
+                : false && this.form.controls['password'].touched
+            "
+            >
+              Passwords do not match*
+            </p>
+          </div>
+          <p class="text-register">
+            By clicking <span>Sign up</span>, you agree to the MG website
+            <a href="/terms">terms of use</a> and
+            <a href="/privacy">privacy policy</a>.
+          </p>
+          <div class="buttons">
+            <button
+              class="outlined-button"
+              mat-stroked-button
+              (click)="navigateTo('')"
+            >
+              Back
+            </button>
+            <button
+              (click)="submitForm()"
+              class="button-global"
+              mat-raised-button
+              type="submit"
+              [disabled]="!this.form.valid"
+            >
+              Sign up
+            </button>
+          </div>
+          <p class="text-register" (click)="navigateTo('/login')">
+            Already have an account? <a href="/login">Log In</a>
+          </p>
+        </form>
+      </section>
+      <section class="col2">
+        <div class="account-features">
+          <p class="text">Log in to your MG Waste account to:</p>
+          <ul>
+            <li>
+              <a>Make a payment online</a>
+            </li>
+            <li>
+              <a>View trash and recycling pickup times</a>
+            </li>
+            <li>
+              <a>Add or update a billing method</a>
+            </li>
+            <li>
+              <a>Enroll in e-billing</a>
+            </li>
+            <li>
+              <a>Customize alerts and notifications</a>
+            </li>
+          </ul>
+        </div>
+        <!-- aqui abajo va un for con las opciones de la lista y segun se cumplan las condiciones se van activando -->
+        <div class="account-features second-box">
+          <p class="text">Your MG password must include:</p>
+          @for (checkbox of checkboxItems; track $index) {
+          <div class="checkbox-container">
+            <label class="custom-checkbox">
+              <input
+                type="checkbox"
+                [id]="'checkbox' + $index"
+                [checked]="checkbox.isChecked"
+                disabled
+                (change)="toggleCheckboxState($index)"
+              />
+              <span class="checkmark"></span>
+            </label>
+            <p
+              [class.text-checkbox-checked]="checkbox.isChecked"
+              class="text-checkbox"
+            >
+              {{ checkbox.name }}
+            </p>
+          </div>
+          }
+        </div>
+      </section>
+    </section>
+  </section>
+</section>
