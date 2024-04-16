@@ -1,15 +1,123 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/assets/shared/variables";
 
+@font-face {
+  font-family: "DosisMedium";
+  font-style: normal;
+  src: url("assets/fonts/dosis/Dosis-Medium.ttf");
+}
+@font-face {
+  font-family: "DosisBold";
+  font-style: normal;
+  src: url("assets/fonts/dosis/Dosis-Bold.ttf");
+}
+
+@font-face {
+  font-family: "DosisExtraBold";
+  font-style: normal;
+  src: url("assets/fonts/dosis/Dosis-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "MyryadPro";
+  font-style: normal;
+  src: url("assets/fonts/MyriadPro-Regular.otf");
+}
+
+@font-face {
+  font-family: "MontserratSemiBold";
+  font-style: normal;
+  src: url("assets/fonts/montserrat/Montserrat-SemiBold.otf");
+}
+
+@font-face {
+  font-family: "MontserratRegular";
+  font-style: normal;
+  src: url("assets/fonts/montserrat/Montserrat-Regular.otf");
+}
+
+@font-face {
+  font-family: "MontserratLight";
+  font-style: normal;
+  src: url("assets/fonts/montserrat/Montserrat-Light.otf");
+}
+
+@font-face {
+  font-family: "MontserratBold";
+  font-style: normal;
+  src: url("assets/fonts/montserrat/Montserrat-Bold.otf");
+}
+
+@font-face {
+  font-family: "MontserratThin";
+  font-style: normal;
+  src: url("assets/fonts/montserrat/Montserrat-Thin.otf");
+}
+
+@font-face {
+  font-family: "MontserratBlack";
+  font-style: normal;
+  src: url("assets/fonts/montserrat/Montserrat-Black.otf");
+}
+
+@font-face {
+  font-family: "DosisLight";
+  font-style: normal;
+  src: url("assets/fonts/dosis/Dosis-light.ttf");
+}
+
+@font-face {
+  font-family: "RobotoCondensedLight";
+  font-style: normal;
+  src: url("assets/fonts/roboto/RobotoCondensed-Light.ttf");
+}
+
+@font-face {
+  font-family: "RobotoCondensedRegular";
+  font-style: normal;
+  src: url("assets/fonts/roboto/RobotoCondensed-Regular.ttf");
+}
+
+@font-face {
+  font-family: "RobotoCondensedBold";
+  font-style: normal;
+  src: url("assets/fonts/roboto/RobotoCondensed-Bold.ttf");
+}
+@font-face {
+  font-family: "Max-Regular";
+  font-style: normal;
+  src: url("assets/fonts/Maax-Regular.otf");
+}
+@font-face {
+  font-family: "Max-Bold";
+  font-style: normal;
+  src: url("assets/fonts/Maax-Bold.eot");
+}
+
 html,
 body {
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: "Maax-Regular", Arial, sans-serif !important;
   text-decoration: none;
 }
+
+
+.red-snack {
+  background-color: rgb(195, 37, 37);
+  color: white;
+}
+
+.green-snack {
+  background-color: #00c120;
+}
+
+.snack-body {
+  font-family: "DosisMedium" !important;
+  font-size: 1vw !important;
+}
+
 * {
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
@@ -60,9 +168,11 @@ p {
   label {
     position: absolute;
     top: -11px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     left: 10px;
-    font-weight: bold;
+    letter-spacing: .1rem;
+    font-weight: 800!important;
+    font-family: "MyryadPro";
     color: rgba(73, 73, 73, 0.74);
     background-color: white;
     padding: 0 8px;
@@ -79,7 +189,8 @@ p {
     border-radius: 4px;
     outline: none;
     color: $plain-color;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    font-family: "MyryadPro";
     font-weight: bold;
     letter-spacing: 0.05rem;
     transition: all ease-in-out 0.1s;
@@ -90,6 +201,7 @@ p {
     &::placeholder {
       font-size: 0.8rem;
       font-weight: bold;
+      font-family: "MyryadPro";
       letter-spacing: 0.05rem;
       color: rgba(128, 128, 128, 0.486);
     }
@@ -111,7 +223,8 @@ p {
     top: -11px;
     font-size: 0.9rem;
     left: 10px;
-    font-weight: bold;
+    font-weight: 800!important;
+    font-family: "MyryadPro";
     color: $plain-color;
     background-color: white;
     padding: 0 8px;
@@ -126,6 +239,7 @@ p {
     box-sizing: border-box;
     border: solid rgba(128, 128, 128, 0.527) 2.5px;
     border-radius: 4px;
+    font-family: "MyryadPro";
     outline: none;
     font-size: 0.9rem;
     color: rgb(0 0 0 / 54%);
@@ -140,6 +254,7 @@ p {
     &::placeholder {
       font-size: 0.8rem;
       font-weight: bold;
+      font-family: "MyryadPro";
       letter-spacing: 0.05rem;
       color: rgba(128, 128, 128, 0.486);
     }
@@ -169,38 +284,79 @@ p {
   position: relative;
   background-color: #5ea627 !important;
   color: rgba(255, 255, 255, 0.925) !important;
-  font-weight: 500;
+  font-weight: bold !important;
   width: auto !important;
   border-radius: 10rem !important;
   font-size: 1rem !important;
+  height: 40px!important;
+  font-family: "DosisMedium"!important;
   letter-spacing: 0.11rem !important;
+  &:disabled {
+    background-color: grey!important;
+    color: darkgray!important;
+    cursor: not-allowed;
+    // Add any other styles for the disabled state here
+  }
 }
 .outlined-button {
   position: relative;
   outline: solid #5ea627 2px !important;
   color: $plain-color !important;
-  font-weight: 500;
+  font-weight: bold !important;
   border-radius: 10rem !important;
   font-size: 1rem !important;
+  height: 40px!important;
+  font-family: "DosisMedium"!important;
   letter-spacing: 0.11rem !important;
 }
-
-
-.error-text{
-  color: red;
-  font-size: .7rem;
-  line-height: .9rem;
-  margin-top: .5rem!important;
+button{
+  height: 40px!important;
+  font-family: Max-Regular!important;
+  font-size: 1rem!important;
 }
 
-.required-red{
+.btn-default, .btn-success, .btn-warning, .btn-error{
+  position: relative;
+  color: $plain-color !important;
+  font-weight: bold !important;
+  border-radius: 10rem !important;
+  font-size: 1rem !important;
+  height: 40px!important;
+  font-family: "DosisMedium"!important;
+  letter-spacing: 0.11rem !important;
+  padding: 0 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn-success{
+  border: none;
+  outline: solid #5ea627 2px !important;
+}
+.btn-warning{
+  border: none;
+  outline: solid #F8BB86 2px !important;
+}
+.btn-error{
+  border: none;
+  outline: solid #F27474 2px !important;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.7rem;
+  line-height: 0.9rem;
+  margin-top: 0.5rem !important;
+}
+
+.required-red {
   transition: all ease-in-out 0.5s;
-  input{
-    border-color: red!important;
+  input {
+    border-color: red !important;
     transition: all ease-in-out 0.5s;
   }
-  label{
-    color: red!important;
+  label {
+    color: red !important;
     transition: all ease-in-out 0.5s;
   }
 }

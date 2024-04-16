@@ -130,7 +130,7 @@ export class HeaderComponent {
   clickout(event: { target: any }) {
     // Close dropdown if clicked outside
     if (!this.eRef.nativeElement.contains(event.target)) {
-      this.closeDropdown();
+      this.closeDropdown(); 
     }
 
     // Logic to hide the login window if clicked outside
@@ -169,7 +169,7 @@ export class HeaderComponent {
 
   clearActiveContent(): void {
     // Clear the active content
-    this.activeOptions = [];
+    this.activeOptions = []; 
     this.activeItem = null;
   }
 
@@ -194,11 +194,10 @@ export class HeaderComponent {
   toggleClass() {
     this.isClassActive = !this.isClassActive;
   }
- 
+
   navigateTo(path: string): void {
-    if (path === '/login') {
-      this.isClassActive = false;
-    }
+    this.isClassActive = false;
+
     this.router.navigate([path]);
   }
 }

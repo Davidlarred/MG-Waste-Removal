@@ -1,15 +1,24 @@
-import { Route, provideRouter } from '@angular/router';
+import { Route, RouterModule, provideRouter } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { authRoutes } from './modules/Auth/auth-routing.module';
+import { HttpClientModule, } from '@angular/common/http';
+import { importProvidersFrom } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const routes: Route[] = [
-  { path: '', component: MainComponent, title: 'Home' }, // Default route
-  ...authRoutes, // Imported modular routes from the Auth module
-  // You can import more routes from other modules in a similar fashion
+  { path: '', component: MainComponent, title: 'Home', data: { animation: 'HomePage' } },
+  // Ensure each route in authRoutes also has a unique animation state if necessary
+  ...authRoutes,
 ];
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)],
-}).catch((err) => console.error(err));
+  providers: [
+    importProvidersFrom(
+      RouterModule.forRoot(routes), // Setup routing
+      HttpClientModule, // Setup HTTP client
+      BrowserAnimationsModule
+    )
+  ],
+}).catch(err => console.error(err));

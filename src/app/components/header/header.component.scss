@@ -9,7 +9,8 @@
   align-items: center;
   flex-direction: column;
   height: 43px;
-  background-color: #f8f8f2;
+  z-index: 1;
+  background-color: #F8F8F2;
   .sub-menu {
     position: relative;
     display: flex;
@@ -19,6 +20,7 @@
     background-color: transparent;
     margin: 0;
     padding: 0; 
+    z-index: 1;
     .col2 {
       display: flex;
       justify-content: space-between;
@@ -30,6 +32,7 @@
         color: $primary-color;
         letter-spacing: 0.05rem;
         text-decoration: none;
+        font-family: Max-Regular;
         &:hover {
           color: $secondary-color;
         }
@@ -37,6 +40,7 @@
       .space {
         position: relative;
         margin: 0 15px;
+        font-family: Max-Regular;
       }
       .badge-icon {
         display: flex;
@@ -59,7 +63,7 @@
       button {
         box-shadow: none;
         height: 100%;
-        background-color: #e8f9e8a1;
+        background-color: #ebe4e477;
         font-size: 1rem;
         font-weight: 400;
         color: $primary-color;
@@ -237,7 +241,7 @@
       a {
         position: relative;
         margin: 0 15px;
-        font-size: 0.92rem;
+        font-size: 1rem;
         font-weight: 600;
         height: 100%;
         display: flex;

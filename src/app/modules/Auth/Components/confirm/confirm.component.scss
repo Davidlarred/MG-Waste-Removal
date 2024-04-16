@@ -1,0 +1,126 @@
+@import "../../../../../assets/shared/variables";
+.container {
+  position: relative;
+  max-width: 100%;
+  background-color: #f8f8f2;
+  height: 100%;
+  .head {
+    padding: 0 calc((100% - 1140px) / 2) !important;
+    position: relative;
+    height: 12.5rem;
+    display: flex;
+    font-family: "DosisExtraBold" !important;
+    justify-content: flex-start;
+    align-items: center;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      background-image: url("../../../../../assets/images/banner.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      left: 0;
+      top: 0;
+      height: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .text-h1 {
+      position: absolute;
+      letter-spacing: -0.5px;
+      z-index: 2;
+      font-size: 4rem;
+      color: black;
+      font-family: "DosisExtraBold" !important;
+    }
+  }
+  .main-content {
+    position: relative;
+    padding: 3rem calc((100% - 1140px) / 2) !important;
+    display: flex;
+    min-height: calc(100vh - (12.5rem + 64px + 43px + 64px + 43px));
+    justify-content: space-between;
+    align-items: flex-start;
+    .verification-info {
+      position: relative;
+      width: 30%;
+      // margin-right: 6rem;
+      .text-h2 {
+        position: relative;
+        font-size: 1.5rem;
+        font-family: "DosisExtraBold" !important;
+        color: rgba(0, 0, 0, 0.753);
+      }
+      .email-verification {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-weight: bold;
+        font-family: "DosisMedium" !important;
+        mat-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+        p {
+          margin-left: 0.5rem !important;
+        }
+      }
+      .text {
+        position: relative;
+        font-size: 1rem;
+        font-family: "DosisMedium" !important;
+      }
+      .text-sent-to {
+        margin: 0.5rem 0 !important;
+      }
+      .email-address {
+        font-weight: bold;
+      }
+      .text-description {
+        margin: 1rem 0 !important;
+      }
+      .features-list {
+        font-size: 1rem;
+        font-family: "DosisMedium";
+        text-decoration: none;
+        li {
+          margin-top: 0.2rem !important;
+        }
+      }
+      .button-global{
+        font-size: 1rem!important;
+        letter-spacing: normal;
+        font-family: "DosisMedium"!important;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+    }
+    .email-help {
+      position: relative;
+      width: 60%;
+      h2{
+        position: relative;
+        font-size: 1.5rem;
+        font-family: "DosisExtraBold" !important;
+        color: rgba(0, 0, 0, 0.753);
+      }
+      p{
+        position: relative;
+        font-size: 1rem;
+        font-family: "DosisMedium" !important;
+        margin: 1rem 0!important;
+      }
+      button{
+        letter-spacing: normal;
+        font-weight: bold;
+        font-size: 1rem!important;
+        font-family: "DosisMedium"!important;
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@
       content: "";
       position: absolute;
       width: 100%;
-      background-image: url("../../../../../assets/images/WhatsApp\ Image\ 2023-09-09\ at\ 2.13.10\ PM.jpeg");
+      background-image: url("../../../../../assets/images/banner.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -24,27 +24,15 @@
       height: 100%;
       margin: 0 !important;
       padding: 0 !important;
-      background-color: rgba(0, 0, 0, 0.5);
     }
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      height: 100%;
-      margin: 0 !important;
-      padding: 0 !important;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
+   
     .text-login {
       position: absolute;
       letter-spacing: -0.5px;
       z-index: 2;
-      font-size: 3.5rem;
+      font-size: 4rem;
       color: black;
-      font-weight: 800;
+      font-family: "DosisExtraBold"!important;
     }
   }
   .head2 {
@@ -106,12 +94,6 @@
         .button-global {
           margin: 1rem 0;
           width: 100%;
-          &:disabled {
-            background-color: grey!important;
-            color: darkgray!important;
-            cursor: not-allowed;
-            // Add any other styles for the disabled state here
-          }
         }
         .createAccount {
           margin-top: 0.5rem !important;
@@ -238,4 +220,13 @@
 
 .text-checkbox-checked {
   color: $plain-color !important;
+}
+.hide{
+  position: absolute;
+  right: 0;
+  color: rgba(0, 0, 0, 0.534);
+  background-color: none!important;
+  &:hover{
+    background-color: none!important;
+  }
 }

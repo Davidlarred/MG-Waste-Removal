@@ -1,0 +1,44 @@
+<section class="container">
+  <header class="head">
+    <h1 class="text-h1">Account Verification</h1>
+  </header>
+  <main class="main-content">
+    <section class="verification-info">
+      <h2 class="text-h2">Create your MG Waste account</h2>
+      <div class="email-verification">
+        <mat-icon class="material-icons">email</mat-icon>
+        <p>Verify Email</p>
+      </div>
+      <p class="text-sent-to text">We have sent a verification email to:</p>
+      <p class="email-address text">{{ email }}</p>
+      <p class="text-description text">
+        Please check your email and click on the verification link. Once your
+        email is verified, you'll be able to set up your service accounts and
+        access the following features:
+      </p>
+      <ul class="features-list">
+        <li>Remit payment</li>
+        <li>Update payment options</li>
+        <li>Administer your services</li>
+      </ul>
+      <button
+        (click)="navigateTo('/register')"
+        class="button-global"
+        type="button"
+        mat-raised-button
+      >
+        Change Email
+      </button>
+    </section>
+    <section class="email-help">
+      <h2>Did Not Receive An Email?</h2>
+      <p>
+        If you have not received any emails so far, please click the link to
+        resend the email.
+      </p>
+      <button class="button-global" type="button" mat-raised-button>
+        Resend Email
+      </button>
+    </section>
+  </main>
+</section>

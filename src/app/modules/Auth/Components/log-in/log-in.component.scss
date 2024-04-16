@@ -8,14 +8,14 @@
     position: relative;
     height: 12.5rem;
     display: flex;
-    font-family: "Maax-Black", Arial, sans-serif !important;
+    font-family: "DosisExtraBold" !important;
     justify-content: flex-start;
     align-items: center;
     &::after {
       content: "";
       position: absolute;
       width: 100%;
-      background-image: url("../../../../../assets/images/WhatsApp\ Image\ 2023-09-09\ at\ 2.13.10\ PM.jpeg");
+      background-image: url("../../../../../assets/images/banner.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -26,25 +26,14 @@
       padding: 0 !important;
       background-color: rgba(0, 0, 0, 0.5);
     }
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      height: 100%;
-      margin: 0 !important;
-      padding: 0 !important;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
+
     .text-login {
       position: absolute;
       letter-spacing: -0.5px;
       z-index: 2;
-      font-size: 3.5rem;
+      font-size: 4rem;
       color: black;
-      font-weight: 800;
+      font-family: "DosisExtraBold" !important;
     }
   }
   .head2 {
@@ -84,6 +73,15 @@
           input {
             width: 100%;
           }
+          .hide{
+            position: absolute;
+            right: 0;
+            font-size: 1rem;
+            color: gray;
+            span{
+              font-size: 1rem;
+            }
+          }
         }
         .forgot {
           font-size: 0.95rem;
@@ -93,7 +91,7 @@
         }
         .button-global {
           margin: 1rem 0;
-          width: 100%;
+          width: 100% !important;
         }
         .createAccount {
           margin-top: 0.5rem !important;
@@ -149,6 +147,11 @@
             margin-bottom: 0.5rem;
           }
         }
+        .form-container {
+          button {
+            width: 150px !important;
+          }
+        }
       }
       .continue-as-guest {
         .icon-text-holder {
@@ -180,21 +183,21 @@
           color: $plain-color;
           margin-top: 1rem !important;
         }
-        .form-container{
+        .form-container {
           display: flex;
           align-items: center;
           margin-top: 2rem;
         }
-        .privacy-policy{
+        .privacy-policy {
           font-size: 0.9rem;
           color: $plain-color;
-          margin: 1rem 0!important;
-          a{
+          margin: 1rem 0 !important;
+          a {
             text-decoration: none;
             color: $primary-color;
           }
         }
-        .invoice-image{
+        .invoice-image {
           margin: 0;
           padding: 0;
           width: auto;

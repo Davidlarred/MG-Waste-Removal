@@ -17,7 +17,7 @@
           >
             <input
               formControlName="name"
-              placeholder="John"
+              placeholder=""
               type="text"
               id="First-Name"
             />
@@ -37,15 +37,18 @@
               Name can only contain letters
             </p>
           </div>
-          <div class="main-container email"
-          [ngClass]="
-              form.controls['lastname'].errors && form.controls['lastname'].touched
+          <div
+            class="main-container email"
+            [ngClass]="
+              form.controls['lastname'].errors &&
+              form.controls['lastname'].touched
                 ? 'required-red'
                 : ''
-            ">
+            "
+          >
             <input
               formControlName="lastname"
-              placeholder="Due"
+              placeholder=""
               type="text"
               id="Last-Name"
             />
@@ -65,27 +68,28 @@
               Name can only contain letters
             </p>
           </div>
-          <div class="main-container email"
-          [ngClass]="
-              form.controls['email'].errors &&
-              form.controls['email'].touched
+          <div
+            class="main-container email"
+            [ngClass]="
+              form.controls['email'].errors && form.controls['email'].touched
                 ? 'required-red'
                 : ''
-            ">
+            "
+          >
             <input
               formControlName="email"
-              placeholder="Lorem@gmail.com"
+              placeholder=""
               type="text"
-              id="email"
+              id="email_register"
             />
-            <label for="email">Email</label>
+            <label for="email_register">Email</label>
             <p
               class="error-text"
               *ngIf="
               this.form.controls['email'].errors?.['required'] &&
               this.form.controls['email'].touched
             "
-            [@fadeInOut]="this.form.controls['email'].errors?.['required'] &&
+              [@fadeInOut]="this.form.controls['email'].errors?.['required'] &&
             this.form.controls['email'].touched"
             >
               Email required*
@@ -115,11 +119,20 @@
           >
             <input
               formControlName="password"
-              placeholder="xxxxxxxxxxx"
+              placeholder=""
               type="text"
-              id="password"
+              id="password_register"
+              [type]="hide ? 'password' : 'text'"
             />
-            <label for="password">Password</label>
+            <button
+              class="hide"
+              mat-icon-button
+              matSuffix
+              (click)="toggleHide()"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <label for="password_register">Password</label>
             <p
               [@fadeInOut]="form.get('password').errors?.['required'] && form.get('password').touched"
               class="error-text"
@@ -143,19 +156,31 @@
           </div>
           <div
             [ngClass]="
-              form.controls['passwordConfirmation'].errors &&
-              form.controls['password'].touched
+              form.controls['password'].errors &&
+              form.controls['password'].touched || form.errors?.['invalidPasswordConfirmation'] === true || form.controls['passwordConfirmation'].errors &&
+              form.controls['passwordConfirmation'].touched
                 ? 'required-red'
-                : ''
+                : '' 
             "
             class="main-container email"
           >
             <input
               formControlName="passwordConfirmation"
-              placeholder="xxxxxxxxxxx"
+              placeholder=""
               type="text"
               id="passwordConfirmation"
+              [type]="hideConfirm ? 'password' : 'text'"
             />
+            <button
+              class="hide"
+              mat-icon-button
+              matSuffix
+              (click)="toggleHideConfirm()"
+            >
+              <mat-icon>{{
+                hideConfirm ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
             <label for="passwordConfirmation">Confirm Password</label>
             <p
               [@fadeInOut]="
@@ -171,6 +196,13 @@
             "
             >
               Passwords do not match*
+            </p>
+            <p
+              [@fadeInOut]="form.get('password').errors?.['required'] && form.get('password').touched"
+              class="error-text"
+              *ngIf="form.get('password').errors?.['required'] && form.get('password').touched || form.get('passwordConfirmation').errors?.['required'] && form.get('passwordConfirmation').touched"
+            >
+              Password is required*
             </p>
           </div>
           <p class="text-register">
@@ -196,8 +228,9 @@
               Sign up
             </button>
           </div>
-          <p class="text-register" (click)="navigateTo('/login')">
-            Already have an account? <a href="/login">Log In</a>
+          <p class="text-register">
+            Already have an account?
+            <a (click)="navigateTo('/Login')">Log In</a>
           </p>
         </form>
       </section>

@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-main',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatButtonModule,
     CommonModule,
+    SlickCarouselModule,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
@@ -27,7 +29,8 @@ export class MainComponent {
   @ViewChild('dropdownContainer2') dropdownContainer2?: ElementRef;
 
   toggleDropdown(dropdownId: number) {
-    this.isDropdownOpen = this.isDropdownOpen === dropdownId ? null : dropdownId;
+    this.isDropdownOpen =
+      this.isDropdownOpen === dropdownId ? null : dropdownId;
   }
 
   @HostListener('document:click', ['$event'])
@@ -38,7 +41,17 @@ export class MainComponent {
   }
 
   private isInsideDropdown(event: MouseEvent, dropdownId: number): boolean {
-    const dropdownContainer = dropdownId === 1 ? this.dropdownContainer1 : this.dropdownContainer2;
+    const dropdownContainer =
+      dropdownId === 1 ? this.dropdownContainer1 : this.dropdownContainer2;
     return dropdownContainer?.nativeElement.contains(event.target) ?? false;
   }
+
+  slides = [
+    { img: '../../../assets/images/WhatsApp Image 2023-09-10 at 3.10.39 PM.jpeg' },
+    { img: '../../../assets/images/WhatsApp Image 2023-09-10 at 3.10.39 PM.jpeg' },
+    { img: '../../../assets/images/WhatsApp Image 2023-09-10 at 3.10.39 PM.jpeg' },
+    { img: '../../../assets/images/WhatsApp Image 2023-09-10 at 3.10.39 PM.jpeg' },
+  ];
+
+  slideConfig = { slidesToShow: 1, slidesToScroll: 1, arrows: true, fade: true};
 }
