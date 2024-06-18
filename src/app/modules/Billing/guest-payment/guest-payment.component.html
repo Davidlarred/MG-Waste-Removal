@@ -1,0 +1,32 @@
+<section class="relative w-full pb-5 bg-primary">
+  <section class="w-full h-48 bg-white pl-96 flex justify-start items-center">
+    <p class="text-6xl font-personal">Payment</p>
+  </section>
+  <section class="relative mx-96 mt-5 bg-white h-auto p-10">
+    <h2 class="!font-headers !text-2xl">Continue As Guest</h2>
+    <p class="!font-titles text-base">
+      As a security measure, you will need your Invoice# and your billing
+      postal code to view your current account balance and make payments.
+    </p>
+    <div class="mt-8 flex">
+        <div class="main-container" style="margin-right: 25px">
+            <input
+              placeholder="536814-08"
+              type="text"
+              id="invoiceNumber"
+            />
+            <label for="address">Invoice#</label>
+          </div>
+          <div class="main-container" style="margin-right: 25px">
+            <input
+              placeholder="33177"
+              type="text"
+              id="zipCode"
+            />
+            <label for="address">Zip Code Billing Address</label>
+          </div>
+    </div>
+    
+    <button class="!font-titles button-global mt-5 px-7"  mat-raised-button>Verify</button>
+  </section>
+</section>

@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/assets/shared/variables";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "DosisMedium";
   font-style: normal;
@@ -102,8 +106,6 @@ body {
   margin: 0;
   text-decoration: none;
 }
-
-
 .red-snack {
   background-color: rgb(195, 37, 37);
   color: white;
@@ -168,12 +170,11 @@ p {
   label {
     position: absolute;
     top: -11px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     left: 10px;
-    letter-spacing: .1rem;
-    font-weight: 800!important;
+    font-weight: 800 !important;
     font-family: "MyryadPro";
-    color: rgba(73, 73, 73, 0.74);
+    color: $plain-color;
     background-color: white;
     padding: 0 8px;
     z-index: 1;
@@ -223,7 +224,7 @@ p {
     top: -11px;
     font-size: 0.9rem;
     left: 10px;
-    font-weight: 800!important;
+    font-weight: 800 !important;
     font-family: "MyryadPro";
     color: $plain-color;
     background-color: white;
@@ -288,12 +289,12 @@ p {
   width: auto !important;
   border-radius: 10rem !important;
   font-size: 1rem !important;
-  height: 40px!important;
-  font-family: "DosisMedium"!important;
+  height: 40px !important;
+  font-family: "DosisMedium" !important;
   letter-spacing: 0.11rem !important;
   &:disabled {
-    background-color: grey!important;
-    color: darkgray!important;
+    background-color: grey !important;
+    color: darkgray !important;
     cursor: not-allowed;
     // Add any other styles for the disabled state here
   }
@@ -305,41 +306,44 @@ p {
   font-weight: bold !important;
   border-radius: 10rem !important;
   font-size: 1rem !important;
-  height: 40px!important;
-  font-family: "DosisMedium"!important;
+  height: 40px !important;
+  font-family: "DosisMedium" !important;
   letter-spacing: 0.11rem !important;
 }
-button{
-  height: 40px!important;
-  font-family: Max-Regular!important;
-  font-size: 1rem!important;
+button {
+  height: 40px !important;
+  font-family: Max-Regular !important;
+  font-size: 1rem !important;
 }
 
-.btn-default, .btn-success, .btn-warning, .btn-error{
+.btn-default,
+.btn-success,
+.btn-warning,
+.btn-error {
   position: relative;
   color: $plain-color !important;
   font-weight: bold !important;
   border-radius: 10rem !important;
   font-size: 1rem !important;
-  height: 40px!important;
-  font-family: "DosisMedium"!important;
+  height: 40px !important;
+  font-family: "DosisMedium" !important;
   letter-spacing: 0.11rem !important;
   padding: 0 1rem;
   background-color: white;
   cursor: pointer;
 }
 
-.btn-success{
+.btn-success {
   border: none;
   outline: solid #5ea627 2px !important;
 }
-.btn-warning{
+.btn-warning {
   border: none;
-  outline: solid #F8BB86 2px !important;
+  outline: solid #f8bb86 2px !important;
 }
-.btn-error{
+.btn-error {
   border: none;
-  outline: solid #F27474 2px !important;
+  outline: solid #f27474 2px !important;
 }
 
 .error-text {
@@ -358,5 +362,91 @@ button{
   label {
     color: red !important;
     transition: all ease-in-out 0.5s;
+  }
+}
+
+.mainbanner {
+  .slick-prev {
+    left: 5rem;
+    z-index: 3;
+    font-size: 0 !important;
+    &::before {
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.712);
+    }
+    &:hover {
+      &::before {
+        color: rgba(255, 255, 255, 0.904);
+      }
+    }
+  }
+  .slick-next {
+    right: 5rem;
+    z-index: 3;
+    font-size: 0 !important;
+    &::before {
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.712);
+    }
+    &:hover {
+      &::before {
+        color: rgba(255, 255, 255, 0.904);
+      }
+    }
+  }
+}
+.font {
+  font-family: "MyryadPro" !important;
+}
+
+.services {
+  .slick-prev {
+    left: 19rem;
+    margin-top: 2rem;
+    z-index: 3;
+    font-size: 0 !important;
+    transition: all ease-in-out 0.1s;
+    &::before {
+      font-size: 2rem;
+      color: #70c92d;
+      transition: all ease-in-out 0.1s;
+    }
+    &:hover {
+      &::before {
+        color: #96e659;
+        transition: all ease-in-out 0.1s;
+      }
+    }
+  }
+  .slick-next {
+    right: 21.5rem;
+    z-index: 3;
+    margin-top: 2rem;
+    font-size: 0 !important;
+    transition: all ease-in-out 0.1s;
+    &::before {
+      font-size: 2rem;
+      color: #70c92d;
+      transition: all ease-in-out 0.1s;
+    }
+    &:hover {
+      &::before {
+        color: #96e659;
+        transition: all ease-in-out 0.1s;
+      }
+    }
+  }
+}
+
+.h-96-per {
+  height: 30rem;
+}
+
+.mask-image {
+  mask-image: linear-gradient(black 80%, transparent);
+}
+.newsletter{
+  .draggable{
+    padding: 2rem 0rem !important;
   }
 }
