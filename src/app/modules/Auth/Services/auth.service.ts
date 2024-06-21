@@ -113,7 +113,7 @@ export class AuthService {
         'session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       console.log('User signed out');
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('Error signing out:', error); 
       throw error;
     }
   }
