@@ -445,8 +445,21 @@ button {
 .mask-image {
   mask-image: linear-gradient(black 80%, transparent);
 }
-.newsletter{
-  .draggable{
+.newsletter {
+  .draggable {
     padding: 2rem 0rem !important;
+  }
+}
+
+.mat-menu-customized {
+  .mat-mdc-menu-content.ng-tns-c2822781442-2 {
+    padding: 0 !important;
+  }
+  button{
+    font-family: Max-Regular !important;
+    font-size: 1rem !important;
+    &:hover {
+      color: #48970f !important;
+    }
   }
 }

@@ -53,11 +53,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private notificatioService: NotificationsService
+    private notificationService: NotificationsService
   ) {
     this.form = this.fb.group(
       {
-        name: [
+        firstName: [
           '',
           [
             Validators.required,
@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             singleNameValidator(),
           ],
         ],
-        lastname: [
+        lastName: [
           '',
           [
             Validators.required,
@@ -176,44 +176,37 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.save();
   }
 
-  save(): void {
-    // Ensure form data is valid before proceeding
+   save(): void {
     if (this.form.valid) {
       const data = this.form.value;
-      delete data.passwordConfirmation;
-      this.authService.userRegister(data).subscribe({
-        next: (response) => {
-          // Navigate to the home page on successful registration
-        this.router.navigate(['AccountVerification/'], { state: { email: data.email } });
+      delete data.passwordConfirmation; // Assuming you handle password confirmation in the form
 
-          // Display success notification
-          this.notificatioService.showSwalWithoutButtons(
-            'Account registered successfully',
-            'success',
+      this.authService.signUp(data).then(userCredential => {
+        // this.router.navigate(['AccountVerification/'], { state: { email: data.email } });
+        this.notificationService.showSwalWithoutButtons(
+          'Account registered successfully',
+          'success',
+          3000,
+          'You can now activate your email to access the website'
+        );
+      }).catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          this.router.navigate(['login']);
+          this.notificationService.showSwalWithoutButtons(
+            'Seems like you already have an account',
+            'error',
             3000,
-            'You can now activate your email to access the website'
+            'Please log in to access the website'
           );
-        },
-        error: (error) => {
-          if (error.statusText === 'Conflict') {
-            this.router.navigate(['login']);
-            this.notificatioService.showSwalWithoutButtons(
-              'Seems like you already have an account',
-              'error',
-              3000,
-              'Please log in to access the website'
-            );
-          } else {
-            this.notificatioService.showSwalWithoutButtons(
-              'Oops, something went wrong',
-              'error',
-              2000
-              // error.message
-            );
-            console.log(error);
-          }
-          // Log and display error notification
-        },
+        } else {
+          this.notificationService.showSwalWithoutButtons(
+            'Oops, something went wrong',
+            'error',
+            2000,
+            error.message
+          );
+          console.log(error);
+        }
       });
     }
   }

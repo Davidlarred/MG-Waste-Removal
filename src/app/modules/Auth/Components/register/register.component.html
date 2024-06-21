@@ -9,30 +9,30 @@
         <form [formGroup]="form">
           <div
             [ngClass]="
-              form.controls['name'].errors && form.controls['name'].touched
+              form.controls['firstName'].errors && form.controls['firstName'].touched
                 ? 'required-red'
                 : ''
             "
             class="main-container email"
           >
             <input
-              formControlName="name"
+              formControlName="firstName"
               placeholder=""
               type="text"
               id="First-Name"
             />
             <label for="First-Name">First Name</label>
             <p
-              [@fadeInOut]="form.get('name').errors?.['required'] && form.get('name').touched"
+              [@fadeInOut]="form.get('firstName').errors?.['required'] && form.get('firstName').touched"
               class="error-text"
-              *ngIf="form.get('name').errors?.['required'] && form.get('name').touched"
+              *ngIf="form.get('firstName').errors?.['required'] && form.get('firstName').touched"
             >
               First name is required*
             </p>
             <p
-              [@fadeInOut]="form.get('name').errors?.['singleName'] && form.get('name').touched"
+              [@fadeInOut]="form.get('firstName').errors?.['singleName'] && form.get('firstName').touched"
               class="error-text"
-              *ngIf="form.get('name').errors?.['singleName'] && form.get('name').touched"
+              *ngIf="form.get('firstName').errors?.['singleName'] && form.get('firstName').touched"
             >
               Name can only contain letters
             </p>
@@ -40,30 +40,30 @@
           <div
             class="main-container email"
             [ngClass]="
-              form.controls['lastname'].errors &&
-              form.controls['lastname'].touched
+              form.controls['lastName'].errors &&
+              form.controls['lastName'].touched
                 ? 'required-red'
                 : ''
             "
           >
             <input
-              formControlName="lastname"
+              formControlName="lastName"
               placeholder=""
               type="text"
               id="Last-Name"
             />
             <label for="Last-Name">Last Name</label>
             <p
-              [@fadeInOut]="form.get('lastname').errors?.['required'] && form.get('lastname').touched"
+              [@fadeInOut]="form.get('lastName').errors?.['required'] && form.get('lastName').touched"
               class="error-text"
-              *ngIf="form.get('lastname').errors?.['required'] && form.get('lastname').touched"
+              *ngIf="form.get('lastName').errors?.['required'] && form.get('lastName').touched"
             >
               Last name is required*
             </p>
             <p
-              [@fadeInOut]="form.get('lastname').errors?.['singleName'] && form.get('lastname').touched"
+              [@fadeInOut]="form.get('lastName').errors?.['singleName'] && form.get('lastName').touched"
               class="error-text"
-              *ngIf="form.get('lastname').errors?.['singleName'] && form.get('lastname').touched"
+              *ngIf="form.get('lastName').errors?.['singleName'] && form.get('lastName').touched"
             >
               Name can only contain letters
             </p>

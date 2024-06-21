@@ -14,6 +14,7 @@ import { passwordStrengthValidator } from '../../../../../assets/shared/validato
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AuthService } from '../../Services/auth.service';
 import { NotificationsService } from '../../../../../assets/shared/services/notification.service';
+import { SpinnerService } from '../../../../../assets/shared/services/spinner.service';
 
 @Component({
   selector: 'app-log-in',
@@ -41,7 +42,8 @@ export class LogInComponent {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private notificatioService: NotificationsService
+    private notificationService: NotificationsService,
+    private spinnerService: SpinnerService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -79,65 +81,64 @@ export class LogInComponent {
   }
 
   login(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
     // Prepare login credentials
     const loginForm = {
       email: this.form.value.email.toLowerCase(),
       password: this.form.value.password,
     };
 
-    this.authService.signIn(loginForm).subscribe({
-      next: (response) => {
-        if (response.token) {
-          // Store the token securely
-          localStorage.setItem('token', response.token); // Consider using a more secure storage method
-
-          // Optional: navigate to a different page upon successful login
-          this.router.navigate(['/']);
-
-          // Display welcome notification
-          this.notificatioService.showSwalWithoutButtons(
-            'Welcome',
-            'success',
-            2000,
-            'You can now access your account.'
-          );
+    this.spinnerService.show();
+    this.authService.signIn(loginForm.email, loginForm.password).subscribe({
+      next: async (userCredential) => {
+        if (userCredential.user.emailVerified === false) {
+          // Navigate to the desired page
+          this.router.navigate(['/AccountVerification']);
         }
+        
+        // Display welcome notification
+        this.notificationService.showSwalWithoutButtons(
+          'Welcome',
+          'success',
+          2000,
+          'You can now access your account.'
+        );
       },
       error: (error) => {
-        // Determine a user-friendly error message
         const errorMessage = this.getFriendlyErrorMessage(error);
 
-        if (error.error.message === 'Activate account') {
+        if (error.message === 'Activate account') {
           this.router.navigate(['AccountVerification/'], {
-            state: { email: error.error.email },
+            state: { email: loginForm.email },
           });
-          this.notificatioService.showSwalWithoutButtons(
+          this.notificationService.showSwalWithoutButtons(
             'Oops, something went wrong.',
             'error',
             10000,
             errorMessage
           );
         } else {
-          this.notificatioService.showSwalWithoutButtons(
+          this.notificationService.showSwalWithoutButtons(
             'Oops, something went wrong.',
             'error',
             10000,
             errorMessage
           );
         }
-        // Log the error for debugging purposes
-        // console.error('Login error:', error);
 
-        // Re-enable the form for user correction
         this.form.enable();
-
-        // Display an error notification
+      },
+      complete: () => {
+        this.spinnerService.hide();
       },
     });
   }
 
   private getFriendlyErrorMessage(error: any): string {
-    if (error.error.message === 'Activate account') {
+    if (error.message === 'Activate account') {
       return 'You must activate your account before logging in. Please check your email for instructions.';
     } else {
       return 'An error occurred. Please call us at 786 782-1840.';

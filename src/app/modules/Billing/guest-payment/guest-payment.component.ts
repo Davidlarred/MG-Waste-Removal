@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../Auth/Services/auth.service';
 
 @Component({
   selector: 'app-guest-payment',
@@ -9,5 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './guest-payment.component.scss'
 })
 export class GuestPaymentComponent {
+
 
 }

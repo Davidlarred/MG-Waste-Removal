@@ -5,11 +5,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { AuthService } from '../../modules/Auth/Services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../../modules/Auth/models/user.model';
 
 interface DumpsterOption {
   name: string;
@@ -29,6 +33,7 @@ interface DumpsterOption {
     FormsModule,
     MatInputModule,
     MatBadgeModule,
+    MatMenuModule,
     CommonModule,
   ],
 
@@ -111,6 +116,7 @@ export class HeaderComponent {
     },
   ];
 
+  user$: Observable<User | null>;
   selectedLanguage: string = this.languages[0];
   activeOptions: any[] = [];
   isDropdownOpen = false;
@@ -125,7 +131,12 @@ export class HeaderComponent {
   activeSection: string | null = null;
   isClassActive: boolean = false;
 
-  constructor(private eRef: ElementRef, private router: Router) {}
+  constructor(private eRef: ElementRef, private router: Router, private authService:AuthService) {
+    this.user$ = this.authService.getCurrentUser();
+   
+    
+  }
+
   @HostListener('document:click', ['$event'])
   clickout(event: { target: any }) {
     // Close dropdown if clicked outside

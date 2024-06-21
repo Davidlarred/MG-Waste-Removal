@@ -4,7 +4,9 @@
       <div class="selector"></div>
     </div>
     <div class="col2">
-      <a class="space text cursor-pointer" (click)="navigateTo('/payment')">Make a payment</a>
+      <a class="space text cursor-pointer" (click)="navigateTo('/payment')"
+        >Make a payment</a
+      >
       <a class="space text" href="#">Request a Dumpster</a>
       <div class="space badge-icon">
         <mat-icon aria-hidden="false" matBadge="1" matBadgeColor="warn"
@@ -15,6 +17,7 @@
         </span>
       </div>
       <button
+        [matMenuTriggerFor]="menu"
         class="space loginbtn"
         (click)="navigateTo('/Login')"
         mat-raised-button
@@ -23,6 +26,32 @@
       </button>
     </div>
   </mat-toolbar>
+  <mat-menu #menu="matMenu" class="mat-menu-customized">
+    <div>
+      <button mat-menu-item>
+        Log In
+        <mat-icon class="!text-title_color">account_circle</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-menu-item>
+        Continue as Guest
+        <mat-icon class="!text-title_color">person</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-menu-item>
+        Create a MG Profile
+        <mat-icon class="!text-title_color">person_add</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-menu-item>
+        Support Center
+        <mat-icon class="!text-title_color">help</mat-icon>
+      </button>
+    </div>
+  </mat-menu>
 </nav>
 <nav class="main-menu">
   <mat-toolbar class="menu">

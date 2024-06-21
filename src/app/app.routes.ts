@@ -4,6 +4,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { authRoutes } from './modules/Auth/auth-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptor } from '../assets/shared/interceptor/spinnerinterceptor';
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestPaymentComponent } from './modules/Billing/guest-payment/guest-payment.component';
@@ -31,7 +33,8 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       RouterModule.forRoot(routes), // Setup routing
       HttpClientModule, // Setup HTTP client
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
     ),
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
 }).catch((err) => console.error(err));
