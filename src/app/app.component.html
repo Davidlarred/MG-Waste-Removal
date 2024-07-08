@@ -1,6 +1,8 @@
 <main [@routeAnimations]="getRouteAnimationData()" class="content">
-  <app-header></app-header>
-  <router-outlet #outlet="outlet"></router-outlet>
+  <app-header class="relative"></app-header>
+  <section class="outlet-custom">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </section>
   <app-footer></app-footer>
   <app-spinner />
 </main>

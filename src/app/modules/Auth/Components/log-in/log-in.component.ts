@@ -98,7 +98,7 @@ export class LogInComponent {
           // Navigate to the desired page
           this.router.navigate(['/AccountVerification']);
         }
-        
+
         // Display welcome notification
         this.notificationService.showSwalWithoutButtons(
           'Welcome',
@@ -130,6 +130,7 @@ export class LogInComponent {
         }
 
         this.form.enable();
+        this.spinnerService.hide();
       },
       complete: () => {
         this.spinnerService.hide();

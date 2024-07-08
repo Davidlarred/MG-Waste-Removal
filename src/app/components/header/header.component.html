@@ -1,10 +1,10 @@
-<nav class="main-nav">
+<nav class="main-nav relative">
   <mat-toolbar class="sub-menu">
     <div class="col1">
       <div class="selector"></div>
     </div>
     <div class="col2">
-      <a class="space text cursor-pointer" (click)="navigateTo('/payment')"
+      <a class="space text cursor-pointer" (click)="navigateTo('/Payment')"
         >Make a payment</a
       >
       <a class="space text" href="#">Request a Dumpster</a>
@@ -17,36 +17,63 @@
         </span>
       </div>
       <button
-        [matMenuTriggerFor]="menu"
-        class="space loginbtn"
-        (click)="navigateTo('/Login')"
+        [matMenuTriggerFor]="menuButton"
+        class="space loginbtn flex items-center justify-center"
         mat-raised-button
       >
-        Log In
+      <mat-icon class="!text-title_color ">menu</mat-icon>
+      <mat-icon class="!text-title_color !m-0 ">account_circle</mat-icon>
       </button>
     </div>
   </mat-toolbar>
-  <mat-menu #menu="matMenu" class="mat-menu-customized">
+  <mat-menu #menuButton="matMenu" class="mat-menu-customized">
+    @if (!sessionActive)  {
+      <div>
+        <button (click)="navigateTo('/Login')" mat-menu-item>
+          Log In
+          <mat-icon class="!text-title_color">account_circle</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button (click)="navigateTo('/Payment')" mat-menu-item>
+          Continue as Guest
+          <mat-icon class="!text-title_color">person</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button (click)="navigateTo('/Register')" mat-menu-item>
+          Create a MG Profile
+          <mat-icon class="!text-title_color">person_add</mat-icon>
+        </button>
+      </div>
+    } @else{
+      <div>
+        <button (click)="navigateTo('')" mat-menu-item>
+          Account
+          <mat-icon class="!text-title_color">account_circle</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button (click)="navigateTo('')" mat-menu-item>
+          Request a Pickup
+          <mat-icon class="!text-title_color">calendar_today</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button (click)="navigateTo('')" mat-menu-item>
+          Orders
+          <mat-icon class="!text-title_color">receipt</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button (click)="logOut()" mat-menu-item>
+          Sing Out
+          <mat-icon class="!text-title_color">logout</mat-icon>
+        </button>
+      </div>
+    }
     <div>
-      <button mat-menu-item>
-        Log In
-        <mat-icon class="!text-title_color">account_circle</mat-icon>
-      </button>
-    </div>
-    <div>
-      <button mat-menu-item>
-        Continue as Guest
-        <mat-icon class="!text-title_color">person</mat-icon>
-      </button>
-    </div>
-    <div>
-      <button mat-menu-item>
-        Create a MG Profile
-        <mat-icon class="!text-title_color">person_add</mat-icon>
-      </button>
-    </div>
-    <div>
-      <button mat-menu-item>
+      <button (click)="navigateTo('#')" mat-menu-item>
         Support Center
         <mat-icon class="!text-title_color">help</mat-icon>
       </button>
@@ -62,7 +89,7 @@
         alt="MG-Waste-Removal.ico"
       />
     </div>
-    <div class="col2">
+    <div class="col2 relative">
       @for (item of navigationItems; track $index){
       <a
         href="#"
@@ -85,7 +112,7 @@
   <div class="col-container">
     <div class="col1">
       <article class="card">
-        <div class="description">
+        <div class="description relative box-border">
           <span></span>
           @for (option of activeOptions; track $index){
           <p class="heading">{{ option.header }}</p>

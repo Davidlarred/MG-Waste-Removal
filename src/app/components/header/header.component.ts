@@ -1,19 +1,26 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthService } from '../../modules/Auth/Services/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { User } from '../../modules/Auth/models/user.model';
+import { NotificationsService } from '../../../assets/shared/services/notification.service';
 
 interface DumpsterOption {
   name: string;
@@ -49,7 +56,7 @@ interface DumpsterOption {
     ]),
   ],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   languages = ['US-English', 'US-Spanish'];
   navigationItems = [
     {
@@ -130,18 +137,29 @@ export class HeaderComponent {
   menu = false;
   activeSection: string | null = null;
   isClassActive: boolean = false;
+  sessionActive: boolean = false;
+  private destroy$ = new Subject<void>();
 
-  constructor(private eRef: ElementRef, private router: Router, private authService:AuthService) {
+  constructor(
+    private eRef: ElementRef,
+    private router: Router,
+    private authService: AuthService,
+    private notificationService: NotificationsService
+  ) {}
+
+  ngOnInit(): void {
     this.user$ = this.authService.getCurrentUser();
-   
-    
+
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
+      this.sessionActive = user !== null;
+    });
   }
 
   @HostListener('document:click', ['$event'])
   clickout(event: { target: any }) {
     // Close dropdown if clicked outside
     if (!this.eRef.nativeElement.contains(event.target)) {
-      this.closeDropdown(); 
+      this.closeDropdown();
     }
 
     // Logic to hide the login window if clicked outside
@@ -180,7 +198,7 @@ export class HeaderComponent {
 
   clearActiveContent(): void {
     // Clear the active content
-    this.activeOptions = []; 
+    this.activeOptions = [];
     this.activeItem = null;
   }
 
@@ -210,5 +228,26 @@ export class HeaderComponent {
     this.isClassActive = false;
 
     this.router.navigate([path]);
+  }
+
+  logOut(): void {
+    if (this.authService.signOut()) {
+      this.notificationService.showSwalWithoutButtons(
+        'You have been logged out successfully.',
+        'success',
+        2000
+      );
+    } else {
+      this.notificationService.showSwalWithoutButtons(
+        'Seeems like something went wrong. Please try again.',
+        'error',
+        3000
+      );
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

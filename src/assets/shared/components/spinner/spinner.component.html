@@ -1,7 +1,7 @@
 @if (isLoading$ | async) {
 <section
-  class="absolute top-0 left-0 w-full h-full bg-gray-400 flex justify-center items-center"
+  class="fixed top-0 left-0 w-full h-full bg-custom flex justify-center items-center z-50 "
 >
-  <mat-spinner></mat-spinner>
+  <mat-spinner class="color-custom !w-16 !h-16"></mat-spinner>
 </section>
 }

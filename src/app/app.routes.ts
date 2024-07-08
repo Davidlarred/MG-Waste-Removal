@@ -9,6 +9,7 @@ import { SpinnerInterceptor } from '../assets/shared/interceptor/spinnerintercep
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestPaymentComponent } from './modules/Billing/guest-payment/guest-payment.component';
+import { authGuard } from '../assets/guards/auth.guard';
 
 
 export const routes: Route[] = [
@@ -16,13 +17,14 @@ export const routes: Route[] = [
     path: '',
     component: MainComponent,
     title: 'Home',
-    data: { animation: 'HomePage' },
+    // data: { animation: 'HomePage' },
   },
   {
-    path: 'payment',
+    path: 'Payment',
     component: GuestPaymentComponent,
     title: 'Payment',
-    data: { animation: 'HomePage' },
+    canActivate: [authGuard],
+    // data: { animation: 'HomePage' },
   },
   // Ensure each route in authRoutes also has a unique animation state if necessary
   ...authRoutes,

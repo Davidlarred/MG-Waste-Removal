@@ -8,7 +8,7 @@ export const authRoutes: Route[] = [
         (c) => c.LogInComponent
       ),
     title: 'Login',
-    data: { animation: 'login' },
+    // data: { animation: 'login' },
   },
   {
     path: 'Register',
@@ -17,7 +17,7 @@ export const authRoutes: Route[] = [
         (c) => c.RegisterComponent
       ),
     title: 'Register',
-    data: { animation: 'register' },
+    // data: { animation: 'register' },
   },
   {
     path: 'AccountVerification',
@@ -26,6 +26,6 @@ export const authRoutes: Route[] = [
         (c) => c.ConfirmComponent
       ),
     title: 'Confirm Email',
-    data: { animation: 'confirm email' }
+    // data: { animation: 'confirm email' }
   },
 ];

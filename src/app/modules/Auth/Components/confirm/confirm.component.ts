@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationsService } from '../../../../../assets/shared/services/notification.service';
 import { AuthService } from '../../Services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-confirm',
@@ -14,38 +16,28 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss'],
 })
-export class ConfirmComponent implements OnInit {
-  private confirmationToken = '';
-  email: string;
+export class ConfirmComponent implements OnInit, OnDestroy {
+  email: string = '' || 'Email registered with account';
+  sessionActive: boolean;
+  user$: Observable<User | null>;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
     private authService: AuthService,
     private notificationService: NotificationsService
-  ) {
-    const navigation = this.router.getCurrentNavigation();
-    this.email = navigation?.extras.state?.['email'];
-  }
+  ) {}
 
   ngOnInit(): void {
-    // this.confirmationToken = this.activeRoute.snapshot.params['register_token'];
-    // this.activeRoute.queryParams.subscribe((params) => {
-    //   const registerToken = params['register_token'];
-    //   if (registerToken) {
-    //     this.confirmUser(registerToken);
-    //   } else {
-    //     if (!this.email) {
-    //       this.notificationService.showSwalWithoutButtons(
-    //         'Oops, something went wrong.',
-    //         'warning',
-    //         2000,
-    //         "We couldn't find your email address. Please try again."
-    //       );
-    //       this.router.navigate(['Register']);
-    //     }
-    //   }
-    // });
+    this.user$ = this.authService.getCurrentUser();
+
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
+      this.sessionActive = user !== null;
+      if (user) {
+        this.email = user.email;
+      }
+    });
   }
 
   // private confirmUser(token: string): void {
@@ -106,5 +98,9 @@ export class ConfirmComponent implements OnInit {
   // }
   navigateTo(path: string): void {
     this.router.navigate([path]);
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

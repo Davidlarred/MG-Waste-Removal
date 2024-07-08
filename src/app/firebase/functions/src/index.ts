@@ -8,8 +8,8 @@ admin.initializeApp();
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:4200', // Development URL
-  'https://your-production-url.com' // Production URL
+  'http://localhost:59635', // Development URL without trailing slash
+  'https://mg-waste-backend.web.app' // Production URL without trailing slash
 ];
 
 app.use(cookieParser());
@@ -26,14 +26,10 @@ const setCorsHeaders = (req: Request, res: Response, next: NextFunction) => {
   }
   if (req.method === 'OPTIONS') {
     console.log('Handling preflight request');
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.sendStatus(204);
-    return;
+  } else {
+    next();
   }
-  next();
 };
 
 app.use(setCorsHeaders);

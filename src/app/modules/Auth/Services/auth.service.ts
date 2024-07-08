@@ -10,8 +10,9 @@ import {
   getIdToken,
   UserCredential,
   onIdTokenChanged,
+  User as FirebaseUser,
 } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { User as AppUser, User } from '../models/user.model';
@@ -23,6 +24,7 @@ import {
   from,
   map,
   mergeMap,
+  switchMap,
   throwError,
 } from 'rxjs';
 
@@ -32,7 +34,8 @@ import {
 export class AuthService {
   private auth;
   private db;
-  private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  private userSubject: BehaviorSubject<User | null> =
+    new BehaviorSubject<User | null>(null);
   public user$: Observable<User | null> = this.userSubject.asObservable();
 
   constructor(private http: HttpClient) {
@@ -40,11 +43,17 @@ export class AuthService {
     this.auth = getAuth(app);
     this.db = getFirestore(app);
 
-    onIdTokenChanged(this.auth, (user) => {
-      if (user) {
-        user.getIdToken(true).then((idToken) => {
-          this.updateSessionCookie(idToken);
-        });
+    onIdTokenChanged(this.auth, async (firebaseUser: FirebaseUser | null) => {
+      if (firebaseUser) {
+        const idToken = await firebaseUser.getIdToken(true);
+        this.updateSessionCookie(idToken);
+
+        // Fetch additional user data from Firestore
+        const userDoc = await getDoc(doc(this.db, 'users', firebaseUser.uid));
+        const userData = userDoc.data() as User;
+        this.userSubject.next({ ...userData, uid: firebaseUser.uid });
+      } else {
+        this.userSubject.next(null);
       }
     });
   }
@@ -113,7 +122,7 @@ export class AuthService {
         'session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       console.log('User signed out');
     } catch (error) {
-      console.error('Error signing out:', error); 
+      console.error('Error signing out:', error);
       throw error;
     }
   }
@@ -126,17 +135,27 @@ export class AuthService {
     }
     return null;
   }
-  
+
   // Set session cookie
   private async setSessionCookie(idToken: string) {
-    const url = 'https://us-central1-mg-waste-backend.cloudfunctions.net/api/setTokenCookie';
-    await firstValueFrom(this.http.post(url, { idToken }, { withCredentials: true }));
+    const url =
+      'https://us-central1-mg-waste-backend.cloudfunctions.net/api/setTokenCookie';
+    await firstValueFrom(
+      this.http.post(url, { idToken }, { withCredentials: true })
+    );
   }
-  
+
   // Update session cookie
   private updateSessionCookie(idToken: string) {
-    const url = 'https://us-central1-mg-waste-backend.cloudfunctions.net/api/setTokenCookie';
+    const url =
+      'https://us-central1-mg-waste-backend.cloudfunctions.net/api/setTokenCookie';
     this.http.post(url, { idToken }, { withCredentials: true }).subscribe();
+  }
+
+  isUserActive(): Observable<boolean> {
+    return this.user$.pipe(
+      map((user) => !!user && user.emailVerified)
+    );
   }
 
   private handleError(error: any) {

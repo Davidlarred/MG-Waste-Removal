@@ -1,0 +1,1 @@
+import{f as r,v as s}from"./chunk-QIJRCMVY.js";var a=(()=>{let t=class t{constructor(){this.spinnerSubject=new r(!1),this.spinner$=this.spinnerSubject.asObservable()}show(){this.spinnerSubject.next(!0)}hide(){this.spinnerSubject.next(!1)}};t.\u0275fac=function(i){return new(i||t)},t.\u0275prov=s({token:t,factory:t.\u0275fac,providedIn:"root"});let e=t;return e})();export{a};
